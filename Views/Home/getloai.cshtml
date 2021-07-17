@@ -1,0 +1,9 @@
+﻿@model IEnumerable<QLlaptop.Models.LoaiSanPham>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("SPtheoloai", "Home", new { id = item.Maloai})">
+        @item.Tenloai
+    </a>
+
+}

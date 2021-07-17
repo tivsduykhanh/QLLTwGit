@@ -1,0 +1,56 @@
+﻿@using QLlaptop.Models
+@model List<GioHang>  
+@{
+    ViewBag.Title = "Giohang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style=" text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<table align="center" border="1">
+    <tr style=" text-align :center ; font-weight:bold">
+        <td> Mã sản phẩm</td>
+        <td>Tên sản phẩm</td>
+        <td>Ảnh sản phẩm</td>
+        <td>Số lượng</td>
+        <td>Đơn giá </td>
+        <td>Thành tiền</td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style=" text-align :center; font-weight:bold">
+            <td>@item.iMasanpham</td>
+            <td>@item.sTensanpham</td>
+            <td><img src="~/Content/images/@item.sAnhbia" /></td>
+            @using (Html.BeginForm("Capnhatgiohang", "Giohang", new { @iMaSP = item.iMasanpham }))
+            {
+                <td>
+                    <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" style="background-color:yellow" />
+                </td>
+
+            <td>@String.Format("{0:0,0}", item.dDongia)</td>
+            <td>@String.Format("{0:0,0}", item.dThanhtien)</td>
+            <td> <a href="@Url.Action("Detail", "Home", new { id = item.iMasanpham })">Chi tiết </a></td>
+            <td>@Html.ActionLink("Xóa", "Xoagiohang", new { @iMaSP = item.iMasanpham })</td>
+            <td><input type="submit" value=" Cập nhật" /></td>
+            }
+        </tr>
+    }
+    <tr style=" font-weight:bold;text-align:right;color:red">
+        <td colspan="4">Số lượng sản phẩm: @ViewBag.Tongsoluong </td>
+        <td colspan="5">Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ </td>
+    </tr>
+    <tr style="font-weight:bold;color:red;text-align:right">
+        <td colspan="9">
+            @Html.ActionLink("Xóa giỏ hàng", "Xoaall");
+        </td>
+    </tr>
+    <tr style="font-weight:bold;color:red;text-align:center">
+        <td colspan="9">
+            @Html.ActionLink("ĐẶT HÀNG", "Dathang","Giohang");
+        </td>
+    </tr>
+</table>
+

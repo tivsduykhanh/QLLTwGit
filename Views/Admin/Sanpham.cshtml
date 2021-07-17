@@ -1,0 +1,137 @@
+﻿@using QLlaptop.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<QLlaptop.Models.SanPham>
+@*@model IEnumerable<QLlaptop.Models.SanPham>*@
+
+@helper Truncate(string input , int length)
+{
+    if(input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>
+    }
+}
+    @{
+        ViewBag.Title = "Sanpham";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+<br />
+    <h2>QUẢN LÝ SẢN PHẨM</h2>
+<p>
+    @Html.ActionLink("THÊM SẢN PHẨM","Themsanpham")
+</p>
+
+    <table class="table" border="1">
+        <tr>
+            <th style="width:500px">Tên sản phẩm</th>
+            <th style="width:100px">Thương hiệu</th>
+            <th style="width:500px">Loại sản phẩm</th>
+            <th style="width:500px">Hình sản phẩm</th>
+            <th style="width:500px">Hình sản phẩm 1</th>
+            <th style="width:500px">Hình sản phẩm 2</th>
+            <th style="width:500px">Hình sản phẩm 3</th>
+            <th style="width:500px">Thông tin sản phẩm</th>
+            <th style="width:500px">Số lượng tồn</th>
+            <th style="width:200px">Giá sản phẩm</th>
+            <th style="width:500px">Ngày cập nhật</th>
+            <th style="width:2000px">Chức năng quản lý</th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.First().TenSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Mathuonghieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Maloai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ImageSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ImageSP_1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ImageSP_2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ImageSP_3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ThongtinSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Soluongton)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Giatien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Ngaycapnhat)
+            </th>
+            <th></th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThuongHieu.Tenthuonghieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiSanPham.Tenloai)
+                </td>
+                <td>
+                    <img src=" @Url.Content("~/Content/images/All/" +item.ImageSP)" />
+                    @*@Html.DisplayFor(modelItem => item.ImageSP)*@
+                </td>
+                <td>
+                    <img src=" @Url.Content("~/Content/images/All/" +item.ImageSP_1)" />
+                    @*@Html.DisplayFor(modelItem => item.ImageSP_1)*@
+                </td>
+                <td>
+                    <img src=" @Url.Content("~/Content/images/All/" +item.ImageSP_2)" />
+                    @*@Html.DisplayFor(modelItem => item.ImageSP_2)*@
+                </td>
+                <td>
+                    <img src=" @Url.Content("~/Content/images/All/" +item.ImageSP_3)" />
+                    @*@Html.DisplayFor(modelItem => item.ImageSP_3)*@
+                </td>
+                <td>
+                    @Truncate(item.ThongtinSP , 100)
+                    @*@Html.DisplayFor(modelItem => item.ThongtinSP)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluongton)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Giatien)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Ngaycapnhat)*@
+                    @string.Format("{0:dd/MM/yyyy}",item.Ngaycapnhat)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Suasanpham", new { id = item.MaSP }) |
+                    @Html.ActionLink("Chi tiết", "Chitietsanpham", new { id = item.MaSP }) |
+                    @Html.ActionLink("Xóa", "Xoasanpham", new { id = item.MaSP })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Sanpham", new {page = page}))
+        </div>
+        <style>
+            .MenuTrang li{
+                display: inline
+            }
+        </style>

@@ -1,0 +1,110 @@
+﻿@model QLlaptop.Models.SanPham
+
+@{
+    ViewBag.Title = "Chitietsanpham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chitietsanpham</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            Thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThuongHieu.Tenthuonghieu)
+        </dd>
+
+        <dt>
+            Loại sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham.Tenloai)
+        </dd>
+
+        <dt>
+            Hình sản phẩm:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImageSP)*@
+            <img src=" @Url.Content("~/Content/images/All/" +Model.ImageSP)" width="120px" />
+        </dd>
+
+        <dt>
+            Hình chi tiết 1:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImageSP_1)*@
+            <img src=" @Url.Content("~/Content/images/All/" +Model.ImageSP_1)" width="120px" />
+        </dd>
+
+        <dt>
+           Hình chi tiết 2:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImageSP_2)*@
+            <img src=" @Url.Content("~/Content/images/All/" +Model.ImageSP_2)" width="120px" />
+        </dd>
+
+        <dt>
+            Hình chi tiết 3:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImageSP_3)*@
+            <img src=" @Url.Content("~/Content/images/All/" +Model.ImageSP_3)" width="120px" />
+        </dd>
+
+        <dt>
+            Thông tin sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThongtinSP)
+        </dd>
+
+        <dt>
+            Số lượng tồn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+
+        <dt>
+            Giá tiền:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giatien)
+        </dd>
+
+        <dt>
+            Ngày cập nhật:
+        </dt>
+
+        <dd>
+            @string.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Suasanpham", new { id = Model.MaSP }) |
+    @Html.ActionLink("Quay lại danh sách", "Sanpham")
+</p>
