@@ -251,3 +251,7 @@ C:\Users\ASUS\Desktop\QLlaptop\bin\PagedList.dll
 C:\Users\ASUS\Desktop\QLlaptop\bin\PagedList.Mvc.dll
 C:\Users\ASUS\Desktop\QLlaptop\bin\PagedList.xml
 C:\Users\ASUS\Desktop\QLlaptop\bin\PagedList.Mvc.xml
+C:\Users\charl\Desktop\Laptop\QLlaptop\bin\PagedList.dll
+C:\Users\charl\Desktop\Laptop\QLlaptop\bin\PagedList.Mvc.dll
+C:\Users\charl\Desktop\Laptop\QLlaptop\bin\PagedList.xml
+C:\Users\charl\Desktop\Laptop\QLlaptop\bin\PagedList.Mvc.xml
